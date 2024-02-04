@@ -4,11 +4,11 @@
 - Browser
 
 ## Setup
-Clone this repo
-Build the container `docker compose build`
-Then run the images:
-- database: `docker compose up -d db`
-- backend: `docker compose up -d goapp`
+- Clone this repo `git clone git@github.com:firstpersoncode/terraasri.git`
+- Build the container `docker compose build`
+- Then run the images:
+    - database: `docker compose up -d db`
+    - backend: `docker compose up -d goapp`
 
 
 ### Case 1: Unearthing the Philosopher's Stone
