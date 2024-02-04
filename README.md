@@ -12,17 +12,16 @@ Then run the images:
 
 
 ### Case 1: Unearthing the Philosopher's Stone
-Endpoint: `http://localhost:8000/api/go/calculate-diagonal-sum/{size}`
-Method: GET
-Response:
+- Endpoint: `http://localhost:8000/api/go/calculate-diagonal-sum/{size}`
+- Method: GET
+- Response:
 ```go
 type ResCalculateDiagonalSum struct {
 	Matrix [][]int `json:"matrix"` // generated matrix by input {size}
 	Sum    int     `json:"sum"` // calculated diagonals
 }
 ```
-
-Example:
+- Example:
 ```bash
 curl http://localhost:8000/api/go/calculate-diagonal-sum/3
 # output
@@ -30,23 +29,22 @@ curl http://localhost:8000/api/go/calculate-diagonal-sum/3
 ```
 
 ### Case 2: ️ The Time Wizard's Gambit
-Endpoint: `http://localhost:8000/api/go/find-common-slot`
-Method: POST
-Request Body:
+- Endpoint: `http://localhost:8000/api/go/find-common-slot`
+- Method: POST
+- Request Body:
 ```go
 type ReqFindCommonSlot struct {
 	Slots [][][]int `json:"slots"` // 3 dimensional array of time slots for each diplomat
 }
 ```
-Response:
+- Response:
 ```go
 type ResFindCommonSlot struct {
 	Common  []int     `json:"common,omitempty"` // The shortest common time slot
 	Message string    `json:"message,omitempty"` // Display message if there is no common time slot
 }
 ```
-
-Example:
+- Example:
 ```bash
 curl http://localhost:8000/api/go/find-common-slot -H "Content-Type: application/json" -d '{"slots":[[[9,12],[14,16]],[[10,12],[15,17]],[[11,13],[16,18]]]}' 
 # output
