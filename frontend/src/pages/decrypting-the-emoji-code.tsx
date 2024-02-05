@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   Grid,
+  IconButton,
   LinearProgress,
   Stack,
   TextField,
@@ -16,7 +17,8 @@ import Head from "next/head";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import throttle from "lodash.throttle";
 import axios from "axios";
-import { Add } from "@mui/icons-material";
+import { Add, ChevronLeft } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function Case5() {
   const c: ICase = useMemo(() => cases[4], []);
@@ -116,6 +118,17 @@ export default function Case5() {
       </Head>
       <main>
         <Container sx={{ my: 2 }}>
+          <Stack flexDirection="row" alignItems="center" gap={2} sx={{ mb: 4 }}>
+            <IconButton
+              LinkComponent={Link}
+              href="/"
+              sx={{ border: "1px solid #ddd" }}
+            >
+              <ChevronLeft />
+            </IconButton>
+            <Typography variant="h5">{c.subTitle}</Typography>
+          </Stack>
+
           <Grid container spacing={2}>
             <Grid item xs={12} sm={5}>
               <TextField

@@ -3,6 +3,7 @@ import { ICase, ResFindCommonSlot } from "@/libs/types";
 import {
   Box,
   Button,
+  Card,
   Container,
   Grid,
   IconButton,
@@ -15,7 +16,8 @@ import Head from "next/head";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import throttle from "lodash.throttle";
 import axios from "axios";
-import { Add, Close } from "@mui/icons-material";
+import { Add, ChevronLeft, Close } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function Case2() {
   const c: ICase = useMemo(() => cases[1], []);
@@ -135,11 +137,21 @@ export default function Case2() {
       </Head>
       <main>
         <Container sx={{ my: 2 }}>
+          <Stack flexDirection="row" alignItems="center" gap={2} sx={{ mb: 4 }}>
+            <IconButton
+              LinkComponent={Link}
+              href="/"
+              sx={{ border: "1px solid #ddd" }}
+            >
+              <ChevronLeft />
+            </IconButton>
+            <Typography variant="h5">{c.subTitle}</Typography>
+          </Stack>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
               {slots.length > 0 &&
                 slots.map((slot, i) => (
-                  <Box key={i} sx={{ p: 2, backgroundColor: "#ddd", mb: 2 }}>
+                  <Card variant="outlined" key={i} sx={{ p: 2, mb: 2 }}>
                     <Typography variant="h5" sx={{ mb: 2 }}>
                       Diplomat {i + 1}
                     </Typography>
@@ -220,7 +232,7 @@ export default function Case2() {
                         Remove Diplomat
                       </Button>
                     </Stack>
-                  </Box>
+                  </Card>
                 ))}
               <Button
                 variant="contained"

@@ -4,7 +4,9 @@ import {
   Box,
   Container,
   Grid,
+  IconButton,
   LinearProgress,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,6 +14,8 @@ import Head from "next/head";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import throttle from "lodash.throttle";
 import axios from "axios";
+import Link from "next/link";
+import { ChevronLeft } from "@mui/icons-material";
 
 export default function Case3() {
   const c: ICase = useMemo(() => cases[2], []);
@@ -58,6 +62,16 @@ export default function Case3() {
       </Head>
       <main>
         <Container sx={{ my: 2 }}>
+          <Stack flexDirection="row" alignItems="center" gap={2} sx={{ mb: 4 }}>
+            <IconButton
+              LinkComponent={Link}
+              href="/"
+              sx={{ border: "1px solid #ddd" }}
+            >
+              <ChevronLeft />
+            </IconButton>
+            <Typography variant="h5">{c.subTitle}</Typography>
+          </Stack>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
               <TextField
