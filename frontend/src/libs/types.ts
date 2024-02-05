@@ -20,7 +20,8 @@ export interface ResCalculateDiagonalSum {
 
 export interface ResFindCommonSlot {
   data: {
-    common: number[];
+    common?: number[];
+    message?: string;
   }
 }
 

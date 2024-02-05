@@ -242,7 +242,7 @@ export default function Case2() {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm>
                     <Typography>COMMON:</Typography>
-                    {result.common.length > 0 && (
+                    {result.common && result.common.length > 0 && (
                       <Box sx={{ display: "flex", gap: 2 }}>
                         {result.common.map((time, i) => (
                           <Typography variant="h3" key={i}>
@@ -250,6 +250,9 @@ export default function Case2() {
                           </Typography>
                         ))}
                       </Box>
+                    )}
+                    {result.message && (
+                      <Typography>{result.message}</Typography>
                     )}
                   </Grid>
                 </Grid>
