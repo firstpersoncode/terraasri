@@ -25,7 +25,7 @@ func main() {
 	router.HandleFunc("/api/go/calculate-diagonal-sum/{size}", calculateDiagonalSum).Methods("GET")
 	router.HandleFunc("/api/go/find-common-slot", findCommonSlot).Methods("POST")
 	router.HandleFunc("/api/go/is-circular-palindrome/{word}", isCircularPalindrome).Methods("GET")
-	router.HandleFunc("/api/go/self-numbers/{number}", selfNumbers).Methods("GET")
+	router.HandleFunc("/api/go/self-numbers", selfNumbers).Methods("GET")
 	router.HandleFunc("/api/go/secret-message/token", addToken(db)).Methods("POST")
 	router.HandleFunc("/api/go/secret-message/encrypt", encryptMessage(db)).Methods("POST")
 	router.HandleFunc("/api/go/secret-message/decrypt", decryptMessage(db)).Methods("POST")

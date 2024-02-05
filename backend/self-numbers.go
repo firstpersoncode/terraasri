@@ -4,35 +4,51 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 type ResSelfNumbers struct {
-	Generator string `json:"generator"`
-	Sum       int    `json:"sum"`
+	Sum int `json:"sum"`
 }
 
 func selfNumbers(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	numberString := vars["number"]
-	number, err := strconv.Atoi(numberString)
+	queryParams := r.URL.Query()
+	startString := queryParams.Get("start")
+	endString := queryParams.Get("end")
 
-	if err != nil {
-		http.Error(w, "Invalid number", http.StatusInternalServerError)
+	start, err := strconv.Atoi(startString)
+
+	if err != nil || start <= 0 {
+		http.Error(w, "Invalid start", http.StatusInternalServerError)
 		return
 	}
 
-	if number <= 0 {
-		http.Error(w, "Invalid number", http.StatusBadRequest)
+	end, err := strconv.Atoi(endString)
+
+	if err != nil || end <= start {
+		http.Error(w, "Invalid end", http.StatusInternalServerError)
 		return
 	}
 
 	var res ResSelfNumbers
-	res.Generator = numberString
-	res.Sum = d(number)
+
+	selfNumbers := make(map[int]bool)
+	sum := 0
+
+	for i := start; i <= end; i++ {
+		if isSelfNumber(i, selfNumbers) {
+			selfNumbers[i] = true
+			sum += i
+		}
+	}
+
+	res.Sum = sum
 
 	json.NewEncoder(w).Encode(res)
+}
+
+func isSelfNumber(n int, selfNumbers map[int]bool) bool {
+	generator := d(n)
+	return !selfNumbers[generator]
 }
 
 func d(n int) int {
